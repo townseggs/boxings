@@ -1,0 +1,32 @@
+{
+  "inbounds": [
+    {
+      "type": "redirect",
+      "tag": "redirect-in",
+      "listen": "0.0.0.0",
+      "listen_port": 7893
+    }
+  ],
+  "outbounds": [
+    {
+      "type": "direct",
+      "tag": "direct"
+    }
+  ],
+  "route": {
+    "rules": [
+      {
+        "action": "sniff",
+        "sniffer": ["tls", "http"],
+        "timeout": "200ms"
+      },
+      {
+        "domain_suffix": ["example.com"],
+        "action": "route",
+        "outbound": "direct"
+      }
+    ],
+    "final": "direct"
+  }
+}
+

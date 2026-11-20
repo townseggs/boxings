@@ -1,0 +1,7 @@
+table inet boxings_redirect {
+  chain output {
+    type nat hook output priority -100; policy accept;
+    meta l4proto tcp redirect to :7893
+  }
+}
+

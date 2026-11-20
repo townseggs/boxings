@@ -1,0 +1,8 @@
+table inet boxings_tproxy {
+  chain prerouting {
+    type filter hook prerouting priority mangle; policy accept;
+    meta l4proto tcp tproxy ip to 127.0.0.1:7894 meta mark set 1 accept
+    meta l4proto tcp tproxy ip6 to [::1]:7894 meta mark set 1 accept
+  }
+}
+
